@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media Platform</title>
+  <link rel="stylesheet" href="/dist/css/styles.css">
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/js/index.mjs" defer type="module"></script>
+</head>
+
+<body>
+  <div class="posts mt-5">
+    <form method="post" class="posts regForm">
+      <img class="mb-4 myimg myform mt-3" src="/images/eye-tracking.png" alt="" width="80" height="80">
+      <h1 class="h3 mb-3 fw-normal">Please log in</h1>
+
+      <div class="form-floating">
+        <input type="email" id="login" required pattern="^[\w\-.]+@(stud.)?noroff.no$"
+          title="Example: user.name@noroff.no or user.name@stud.noroff.no" name="email" class="form-control"
+          id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+      </div>
+
+      <div class="form-floating mt-2 hidden reg">
+        <input type="text" id="name" pattern="^[\w]+$" name="name"
+          title="No special characters except (_) Example: Mr_Bean" class="form-control req" id="floatingInput"
+          placeholder="Username">
+        <label for="name">Username</label>
+      </div>
+
+      <div class="form-floating mt-2">
+        <input type="password" id="password" required minlength="8" name="password" class="form-control"
+          id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      <div class="form-floating mt-2 hidden reg">
+        <input type="password" id="passwordConfirm" minlength="8" name="passwordConfirm" class="form-control req"
+          id="floatingPassword" placeholder="Confirm Password">
+        <label for="passwordConfirm">Confirm Password</label>
+      </div>
+      <div class="passwordCheck mt-2 form-floating help alert alert-danger hidden">Passwords do not match.</div>
+      <div class="checkbox mb-3 mt-1">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button id="loginBtn" class="w-100 btn btn-lg btn-warning">Login</button>
+      <button id="signupBtn" class="w-100 mt-1 btn btn-lg btn-dark" type="button">Sign-up</button>
+    </form>
+  </div>
+  <div class="container">
+  </div>
+</body>
+
+</html>
