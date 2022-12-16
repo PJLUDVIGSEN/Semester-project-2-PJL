@@ -1,7 +1,6 @@
 {
   "name": "semester-project-2-pjl",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,7 +22,8 @@
     "bootstrap": "^5.2.2"
   },
   "devDependencies": {
-    "live-server": "^1.2.2",
-    "sass": "^1.56.1"
-  }
+    "live-server": "^1.1.0",
+    "sass": "^1.56.2"
+  },
+  "description": ""
 }

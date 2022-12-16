@@ -1,14 +1,15 @@
-import * as storage from "/storage.mjs"
-import { API_HOST_URL } from "./js/constants.mjs";
-const method = "post";
+import { API_LOGIN, API_HOST_URL } from "../constants.mjs";
+import * as storage from "../../handlers/storage.mjs"
 const action = "/auth/login";
+const method = "post";
+
 /**
  * Authenticates userlogin and creates an object that can store the uservalues in local.storage
  * @param {object} profile 
  */
 
 export async function login(profile) {
-  const userUrl = API_HOST_URL + action;
+  const userUrl = API_HOST_URL + API_LOGIN;
   const response = await fetch(userUrl, {
     headers: {
       "Content-Type": "application/json"

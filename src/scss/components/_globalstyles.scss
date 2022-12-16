@@ -1,0 +1,85 @@
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 10px;
+}
+
+.headerbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 500px;
+  justify-content: center;
+  width: 100%;
+}
+
+
+#selecter {
+  text-align-last: right;
+  padding-right: 29px;
+  direction: rtl;
+  max-width: 200px;
+}
+
+.lbl {
+  max-width: 40px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.sizer {
+  flex-grow: 1;
+  min-width: 0px;
+}
+
+.formsize {
+  box-sizing: border-box;
+
+}
+
+.smallbutton {
+  display: flex;
+  max-width: 100px;
+
+}
+
+.knapp {
+  display: flex;
+  width: 100px;
+  justify-content: center;
+}
+
+.myform {
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+
+// .myProfile {
+//   box-sizing: border-box;
+//   margin: 10px;
+// }
+
+a {
+  text-decoration: none;
+
+}
+
+a>* {
+  text-decoration: none;
+}
