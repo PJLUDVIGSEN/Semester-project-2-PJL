@@ -1,6 +1,5 @@
 import { API_REGISTER, API_HOST_URL } from "../constants.mjs";
-import * as storage from "../../handlers/storage.mjs";
-import { loginFormListener } from "../../handlers/login.mjs";
+
 const action = "/auth/register";
 const method = "post";
 

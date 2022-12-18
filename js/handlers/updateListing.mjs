@@ -1,7 +1,5 @@
-import { updatePost } from "../api/posts/update.mjs";
-import { getPost } from "../api/posts/read.mjs";
-
-
+import { updateListing } from "../api/listings/update.mjs";
+import { getPost } from "../api/listings/read.mjs";
 
 /** Form listener for the user to update data on a single and existing object(post)
  * @param  {form} form
@@ -12,15 +10,15 @@ import { getPost } from "../api/posts/read.mjs";
  * @param  {object} post creates an object off the inputs in the update form
  * @param  {number} post.id unique identifier from the object needed to fulfill the api request
  * @param  {} if statement looks for the post.media value and because it is required for a post upload, to bypass this deletes it if it returns null
- * @param  {function} updatePost function which takes a paramater of the new updated object and sends a put request to the api
+ * @param  {function} updateListing function which takes a paramater of the new updated object and sends a put request to the api
  */
 export async function updateFormListener() {
   const form = document.querySelector("#createForm");
-  const queryString = document.location.search; 
+  const queryString = document.location.search;
   const params = new URLSearchParams(queryString);
   const id = params.get("id");
 
-  if (form) { 
+  if (form) {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       const form = event.target;
@@ -30,11 +28,10 @@ export async function updateFormListener() {
       if (!post.media || post.media === "") {
         delete post.media;
       }
-      updatePost(post);
+      updateListing(post);
     });
   }
 }
-
 
 /** Takes an object with an id identifier and fills the corresponding values with inputs in the updateForm
  * @param  {number} id unique paramater of chosen object
@@ -47,9 +44,9 @@ export async function updateFormListener() {
  */
 export async function fillForm(id) {
   const form = document.querySelector("#createForm");
-      const post = await getPost(id);
-      form.media.value = post.media;
-      form.title.value = post.title;
-      form.body.value = post.body;
-      form.tags.value = post.tags;
+  const post = await getPost(id);
+  form.media.value = post.media;
+  form.title.value = post.title;
+  form.body.value = post.body;
+  form.tags.value = post.tags;
 }

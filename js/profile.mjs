@@ -1,19 +1,28 @@
-import { createFormListener } from "./handlers/createPost.mjs";
-import { updateFormListener } from "./handlers/updatePost.mjs";
-import { getPosts, getProfilePosts } from "./api/posts/read.mjs";
+import { createFormListener } from "./handlers/createAuction.mjs";
+import { updateFormListener } from "./handlers/updateListing.mjs";
+import { getListings, getProfileListings } from "./api/listings/read.mjs";
 import { authFetch } from "../js/api/authFetch.mjs";
 import { load } from "./handlers/storage.mjs";
 import { API_HOST_URL, API_PROFILE } from "./api/constants.mjs";
+// import { logout } from "./api/auth/logout.mjs";
 
-const credits = document.querySelector(".credits")
+const credits = document.querySelector(".credits");
 const profileName = document.querySelector(".profileName");
-const auctionFeed = document.querySelector(".auctionFeed");
+const auctionFeed = document.querySelector(".auctionProfile");
+const changeBtn = document.querySelector(".changeBtn");
 const avatarBtn = document.querySelector(".bttn");
 const avatarForm = document.querySelector(".avatar");
-const avatarContainer = document.querySelector(".rounded-circle")
+const avatarInput = document.querySelector(".avatarInput");
+const avatarContainer = document.querySelector(".rounded-xl");
+const logoutButton = document.querySelector(".logout");
+const contentBoxes = document.querySelectorAll(".listings");
+const errorMessage = document.querySelector(".alert")
 const method = "get";
 
 const userName = load("user").name;
+
+
+
 
 export async function getProfile() {
   const getPostURL = `${API_HOST_URL}${API_PROFILE}/${userName}?_listings=true`;
@@ -27,10 +36,10 @@ export async function getProfile() {
 
   credits.innerHTML += `${auctionProfile.credits}`;
   profileName.innerHTML += `${auctionProfile.name}`;
-  avatarContainer.src = `${auctionProfile.avatar}`
-    for (let i = 0; i < auctionProfile.listings.length; i++) {
-      if (auctionFeed)
-        auctionFeed.innerHTML += `<div class="col mb-5">
+  avatarContainer.src = `${auctionProfile.avatar}`;
+  for (let i = 0; i < auctionProfile.listings.length; i++) {
+    if (auctionFeed)
+      auctionFeed.innerHTML += `<div class="col mb-5">
                                   <div class="card h-100">
                                     <!-- Sale badge-->
                                     <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
@@ -56,23 +65,21 @@ export async function getProfile() {
                                     </div>
                                     <!-- Product actions-->
                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="singleitem.html">View</a></div>
+                                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="singleitem.html?id=${auctionProfile.listings[i].id}">View</a></div>
                                     </div>
                                 </div>`;
-    }
-
+  }
 
   return auctionProfile;
 }
 
 getProfile();
 
-
-export async function updateAvt(postData) {
-  const updatePostURL = `${API_HOST_URL}${API_PROFILE}/${userName}/media`;
-  const response = await authFetch(updatePostURL, {
-    method:"put",
-    body: JSON.stringify(postData),
+export async function updateAvt(listingData) {
+  const updateListingURL = `${API_HOST_URL}${API_PROFILE}/${userName}/media`;
+  const response = await authFetch(updateListingURL, {
+    method: "put",
+    body: JSON.stringify(listingData),
   });
 
   const update = await response.json();
@@ -80,25 +87,35 @@ export async function updateAvt(postData) {
   return update;
 }
 
-
 export async function changeAvatar() {
   const form = document.querySelector(".avatar");
   const formData = new FormData(form);
-  const post = Object.fromEntries(formData.entries());
-  console.log(post);
-  updateAvt(post);
+  const listingformData = Object.fromEntries(formData.entries());
+  console.log(listingformData);
+  updateAvt(listingformData);
 }
 
+changeBtn.addEventListener("click", function updateAvatar() {
+  console.log("hello");
+  console.log(avatarInput.classList);
+  if (avatarInput.classList.contains("d-none")) {
+    avatarInput.classList.remove("d-none");
+    avatarBtn.classList.remove("d-none");
+    changeBtn.classList.add("d-none");
+  }
+});
 
 avatarBtn.addEventListener("click", function updateAvatar() {
+  changeAvatar();
+  avatarInput.classList.add("d-none");
+  avatarBtn.classList.add("d-none");
+  changeBtn.classList.remove("d-none");
+});
+
+logoutButton.addEventListener("click", function logout() {
   console.log("hello");
-  console.log(avatarForm.classList)
-  if (avatarForm.classList.contains("d-none")) {
-    avatarForm.classList.remove("d-none");
-    avatarBtn.textContent = "submit"
-  } else if (!avatarForm.classList.contains("d-none")) {
-    changeAvatar();
-    avatarForm.classList.add("d-none");
-    avatarBtn.textContent = "Change Avatar";
-  }
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+
+  location.href = "/index.html";
 });

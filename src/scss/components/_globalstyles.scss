@@ -1,9 +1,8 @@
-.posts {
+.listings {
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  margin: 10px;
 }
 
 .headerbox {
@@ -16,9 +15,10 @@
 .post {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   max-width: 500px;
   justify-content: center;
+  box-sizing: border-box;
+  margin: 10px;
   width: 100%;
 }
 
@@ -34,10 +34,6 @@
   max-width: 40px;
 }
 
-.avatar {
-  width: 40px;
-  height: 40px;
-}
 
 .sizer {
   flex-grow: 1;
@@ -55,6 +51,10 @@
 
 }
 
+.buttonsmall {
+  max-width: 130px;
+}
+
 .knapp {
   display: flex;
   width: 100px;
@@ -67,6 +67,24 @@
 
 .hidden {
   display: none;
+}
+
+.imagecon {
+  width: 250px;
+  height: 250px;
+
+}
+
+.rounded-xl {
+  border-radius: 1.5rem;
+  max-width: 200px;
+}
+
+.avatarForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
 }
 
 

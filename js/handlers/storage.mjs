@@ -24,8 +24,3 @@ export function load(key) {
   }
 }
 
-
-//logout functionality with remove data
-// export function remove(key) {
-  
-// }

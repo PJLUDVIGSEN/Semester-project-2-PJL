@@ -10771,12 +10771,11 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-.posts {
+.listings {
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  margin: 10px;
 }
 
 .headerbox {
@@ -10789,9 +10788,10 @@ textarea.form-control-lg {
 .post {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   max-width: 500px;
   justify-content: center;
+  box-sizing: border-box;
+  margin: 10px;
   width: 100%;
 }
 
@@ -10804,11 +10804,6 @@ textarea.form-control-lg {
 
 .lbl {
   max-width: 40px;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
 }
 
 .sizer {
@@ -10825,6 +10820,10 @@ textarea.form-control-lg {
   max-width: 100px;
 }
 
+.buttonsmall {
+  max-width: 130px;
+}
+
 .knapp {
   display: flex;
   width: 100px;
@@ -10837,6 +10836,23 @@ textarea.form-control-lg {
 
 .hidden {
   display: none;
+}
+
+.imagecon {
+  width: 250px;
+  height: 250px;
+}
+
+.rounded-xl {
+  border-radius: 1.5rem;
+  max-width: 200px;
+}
+
+.avatarForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
 }
 
 a {

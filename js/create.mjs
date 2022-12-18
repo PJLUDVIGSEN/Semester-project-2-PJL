@@ -1,12 +1,9 @@
-import { createFormListener } from "./handlers/createPost.mjs";
+import { createFormListener } from "./handlers/createAuction.mjs";
 
-const btn = document.querySelectorAll(".bttn");
-let postBtn = document.querySelector(".postBtn");
-const updateBtn = document.querySelectorAll(".updateBtn");
+let createBtn = document.querySelector(".createBtn");
 
 
 // const dateField = document.querySelector('input[name="endsAt"]');
 // const datetoISO = new Date(dateField.value).toISOString();
 
-
-postBtn.addEventListener("click", createFormListener());
+createBtn.addEventListener("click", createFormListener());
