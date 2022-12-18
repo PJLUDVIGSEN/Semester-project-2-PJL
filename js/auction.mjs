@@ -5,7 +5,6 @@ import { searchListings } from "./api/listings/read.mjs";
 const method = "get";
 
 const auctionFeed = document.querySelector(".auctionFeed");
-const profileTab = document.querySelector(".profileTab");
 
 export async function displayListings(url) {
   const response = await authFetch(url, {
@@ -14,7 +13,6 @@ export async function displayListings(url) {
 
   const result = await response.json();
   const listingData = result;
-  console.log(listingData);
 
   for (let i = 0; i < listingData.length; i++) {
     if (auctionFeed)
@@ -37,9 +35,6 @@ export async function displayListings(url) {
                                           <div class="bi-star-fill"></div>
                                           <div class="bi-star-fill"></div>
                                         </div>
-                                        <!-- Product price-->
-                                        <span class="text-muted text-decoration-line-through">$20.00</span>
-                                        $18.00
                                       </div>
                                     </div>
                                     <!-- Product actions-->
@@ -79,9 +74,6 @@ export function renderListings(searchListings) {
                                           <div class="bi-star-fill"></div>
                                           <div class="bi-star-fill"></div>
                                         </div>
-                                        <!-- Product price-->
-                                        <span class="text-muted text-decoration-line-through">$20.00</span>
-                                        $18.00
                                       </div>
                                     </div>
                                     <!-- Product actions-->
@@ -106,11 +98,3 @@ const searchBtn = document.getElementById("searchBtn");
 if (searchBtn) {
   document.getElementById("searchBtn").addEventListener("click", goSearch());
 }
-
-
-a.click(function (e) {
-  if (localStorage.getItem("user") !== true) {
-    e.preventDefault();
-    // this prevents navigation and you can now do your js stuff here
-  }
-});

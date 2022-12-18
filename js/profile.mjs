@@ -1,10 +1,6 @@
-import { createFormListener } from "./handlers/createAuction.mjs";
-import { updateFormListener } from "./handlers/updateListing.mjs";
-import { getListings, getProfileListings } from "./api/listings/read.mjs";
 import { authFetch } from "../js/api/authFetch.mjs";
 import { load } from "./handlers/storage.mjs";
 import { API_HOST_URL, API_PROFILE } from "./api/constants.mjs";
-// import { logout } from "./api/auth/logout.mjs";
 
 const credits = document.querySelector(".credits");
 const profileName = document.querySelector(".profileName");
@@ -19,11 +15,14 @@ const contentBoxes = document.querySelectorAll(".listings");
 const errorMessage = document.querySelector(".alert")
 const method = "get";
 
+// checks for user in localstorage to display or hide errormessage
+if (localStorage.getItem("user") === null) {
+  errorMessage.classList.remove("d-none");
+}
+
 const userName = load("user").name;
 
-
-
-
+// function to display dynamic user-content from the API as html
 export async function getProfile() {
   const getPostURL = `${API_HOST_URL}${API_PROFILE}/${userName}?_listings=true`;
   const response = await authFetch(getPostURL, {
@@ -31,8 +30,6 @@ export async function getProfile() {
   });
 
   const auctionProfile = await response.json();
-  console.log(auctionProfile);
-  console.log(userName);
 
   credits.innerHTML += `${auctionProfile.credits}`;
   profileName.innerHTML += `${auctionProfile.name}`;
@@ -75,6 +72,7 @@ export async function getProfile() {
 
 getProfile();
 
+// Api put request for new user-avatar
 export async function updateAvt(listingData) {
   const updateListingURL = `${API_HOST_URL}${API_PROFILE}/${userName}/media`;
   const response = await authFetch(updateListingURL, {
@@ -83,21 +81,19 @@ export async function updateAvt(listingData) {
   });
 
   const update = await response.json();
-  console.log(update);
   return update;
 }
 
+// Creating an object from the new avatar "jpg" link to send to api
 export async function changeAvatar() {
   const form = document.querySelector(".avatar");
   const formData = new FormData(form);
   const listingformData = Object.fromEntries(formData.entries());
-  console.log(listingformData);
   updateAvt(listingformData);
 }
 
+// Listener which displays or hides the input for the new "jpg" link for the user-avatar
 changeBtn.addEventListener("click", function updateAvatar() {
-  console.log("hello");
-  console.log(avatarInput.classList);
   if (avatarInput.classList.contains("d-none")) {
     avatarInput.classList.remove("d-none");
     avatarBtn.classList.remove("d-none");
@@ -105,6 +101,7 @@ changeBtn.addEventListener("click", function updateAvatar() {
   }
 });
 
+// Listener which displays or hides the input for the new "jpg" link for the user-avatar
 avatarBtn.addEventListener("click", function updateAvatar() {
   changeAvatar();
   avatarInput.classList.add("d-none");
@@ -112,8 +109,9 @@ avatarBtn.addEventListener("click", function updateAvatar() {
   changeBtn.classList.remove("d-none");
 });
 
+
+//Listener which deletes userinfo and accessToken from local-storage and "logs the user out"
 logoutButton.addEventListener("click", function logout() {
-  console.log("hello");
   localStorage.removeItem("user");
   localStorage.removeItem("token");
 

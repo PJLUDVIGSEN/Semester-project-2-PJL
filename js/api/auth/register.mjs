@@ -1,6 +1,4 @@
 import { API_REGISTER, API_HOST_URL } from "../constants.mjs";
-
-const action = "/auth/register";
 const method = "post";
 
 /**
@@ -19,6 +17,5 @@ export async function register(profile) {
   });
   
   const result = await response.json();
-  console.log(result);
   return result
 }

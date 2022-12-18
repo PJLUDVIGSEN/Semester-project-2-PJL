@@ -1,6 +1,5 @@
 import { API_LOGIN, API_HOST_URL } from "../constants.mjs";
 import * as storage from "../../handlers/storage.mjs"
-const action = "/auth/login";
 const method = "post";
 
 /**

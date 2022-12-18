@@ -1,7 +1,6 @@
 import { API_HOST_URL, API_LISTINGS, API_PROFILE } from "../constants.mjs";
 import { authFetch } from "../authFetch.mjs";
 
-const action = "/listings";
 const method = "put";
 
 /**

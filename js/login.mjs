@@ -1,7 +1,5 @@
 import { registerFormListener } from "./handlers/registeruser.mjs";
 import { loginFormListener } from "./handlers/login.mjs";
-import { removeListing } from "./api/listings/delete.mjs";
-import * as post from "./api/listings/index.mjs";
 
 const signupBtn = document.querySelector("#signupBtn");
 const loginBtn = document.querySelector("#loginBtn");

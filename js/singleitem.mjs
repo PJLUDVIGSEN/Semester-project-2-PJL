@@ -5,12 +5,21 @@ const queryString = document.location.search;
 const params = new URLSearchParams(queryString);
 const id = params.get("id");
 const listingContainer = document.querySelector(".listingContainer");
+const bets = document.querySelector(".betsContainer");
 const bidBtn = document.querySelector(".btn-bid");
+const errorMessage = document.querySelector(".alert");
+
+// checking for logged in user to display error message and hide bet-information for non logged in users
+if (localStorage.getItem("user") === null) {
+  errorMessage.classList.remove("d-none");
+  bets.classList.add("d-none");
+}
+
+
+// Api call to display dynamic listing content as HTML
 async function listingsingle(container) {
   const listingData = await getPost(id);
-  const bets = document.querySelector(".betsContainer");
-  console.log(listingData);
-  console.log(listingData.description);
+  const endTime = new Date(listingData.endsAt);
   container.innerHTML = ` <div class="container px-4 px-lg-5 my-5">
                           <div class="row gx-4 gx-lg-5 align-items-center">
                             <div class="col-md-5"><img class="card-img-top mb-5 mb-md-0" onerror="this.src='/images/product-image-placeholder.png'"
@@ -19,8 +28,7 @@ async function listingsingle(container) {
                               <div class="small mb-1">Seller: ${listingData.seller.name}</div>
                               <h1 class="display-5 fw-bolder">${listingData.title}</h1>
                               <div class="fs-5 mb-5">
-                                <span class="text-decoration-line-through">$45.00</span>
-                                <span>$40.00</span>
+                                <span>Auction End: ${endTime}</span>
                               </div>
                               <p class="lead desc">${listingData.description}</p>
 
@@ -39,4 +47,5 @@ async function listingsingle(container) {
 }
 listingsingle(listingContainer);
 
+//listener for sending a bet on a listing
 bidBtn.addEventListener("click", bidListener());

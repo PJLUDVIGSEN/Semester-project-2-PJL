@@ -2,7 +2,7 @@ import { API_HOST_URL, API_LISTINGS } from "../constants.mjs";
 import { authFetch } from "../authFetch.mjs";
 
 /**
- * function that takes listingData in as a value and creates a post object for the api to store
+ * function that takes listingData in as a value and creates an object for the api to store
  * @param  {object} listingData object with data
  * @param  {string} createAuctionURL url to connect to the api
  */
@@ -28,6 +28,5 @@ export async function makeBid(bidData) {
     body: JSON.stringify(bidData),
   });
   const singlePost = await response.json();
-  console.log(singlePost);
   return singlePost;
 }
