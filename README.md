@@ -1,4 +1,6 @@
 # Semester-project-2-PJL
+![image](https://github.com/PJLUDVIGSEN/Semester-project-2-PJL/assets/91543020/5fb1f2ce-d8a8-45d3-9e46-a323c79dfd0b)
+
 
 ## Description
 
